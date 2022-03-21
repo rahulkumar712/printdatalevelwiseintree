@@ -1,0 +1,27 @@
+void printLevelWise(TreeNode<int>* root) { 
+    if(root==NULL){
+        return;
+    }
+    queue<TreeNode<int>*> pendingnodes;
+    pendingnodes.push(root);
+    
+    while(pendingnodes.size()!=0){
+        cout<<(pendingnodes.front())->data<<":";
+        
+        int i=0;
+        if((pendingnodes.front())->children.size()==0){
+           pendingnodes.pop();
+            cout<<endl;
+        }
+        else{
+        for(;i<((pendingnodes.front())->children.size())-1;i++){
+            cout<<((pendingnodes.front())->children[i])->data<<",";
+            pendingnodes.push(pendingnodes.front()->children[i]);
+        }
+        
+        cout<<((pendingnodes.front())->children[i])->data<<endl;
+        pendingnodes.push(pendingnodes.front()->children[i]);
+        pendingnodes.pop();
+        }
+    }
+}
